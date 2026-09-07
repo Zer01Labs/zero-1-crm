@@ -1,0 +1,8 @@
+{
+  "name": "Remix Company CRM \u0026 Client Handling Dashboard",
+  "description": "A scarlet-themed CRM and operational suite for tracking leads, converted monthly clients, transactions ledger, employee salaries, and interactive Google Keep-style workspace notes.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

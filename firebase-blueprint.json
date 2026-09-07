@@ -1,0 +1,106 @@
+{
+  "entities": {
+    "Employee": {
+      "title": "Employee",
+      "description": "An employee or personnel of the company",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "role": { "type": "string" },
+        "salary": { "type": "number" },
+        "email": { "type": "string" },
+        "phone": { "type": "string" },
+        "joinedDate": { "type": "string" }
+      },
+      "required": ["id", "name", "role", "salary", "email", "phone", "joinedDate"]
+    },
+    "Client": {
+      "title": "Client",
+      "description": "A client or lead of the company",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "company": { "type": "string" },
+        "email": { "type": "string" },
+        "phone": { "type": "string" },
+        "status": { "type": "string", "enum": ["lead", "contacted", "proposal", "converted", "lost"] },
+        "paymentType": { "type": "string", "enum": ["monthly", "one-time"] },
+        "dealValue": { "type": "number" },
+        "assignedEmployeeId": { "type": "string" },
+        "createdDate": { "type": "string" }
+      },
+      "required": ["id", "name", "company", "email", "phone", "status", "paymentType", "dealValue", "assignedEmployeeId", "createdDate"]
+    },
+    "Payment": {
+      "title": "Payment",
+      "description": "A payment transaction or cash inflow from a client",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "clientId": { "type": "string" },
+        "clientName": { "type": "string" },
+        "amount": { "type": "number" },
+        "date": { "type": "string" },
+        "type": { "type": "string", "enum": ["monthly", "one-time"] },
+        "notes": { "type": "string" },
+        "method": { "type": "string", "enum": ["Wire", "Card", "Bank", "Cash"] }
+      },
+      "required": ["id", "clientId", "clientName", "amount", "date", "type", "notes"]
+    },
+    "SalaryPayout": {
+      "title": "SalaryPayout",
+      "description": "A monthly payroll payout made to an employee",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "employeeId": { "type": "string" },
+        "employeeName": { "type": "string" },
+        "amount": { "type": "number" },
+        "date": { "type": "string" },
+        "notes": { "type": "string" },
+        "paidMonth": { "type": "string" }
+      },
+      "required": ["id", "employeeId", "employeeName", "amount", "date", "notes"]
+    },
+    "Expense": {
+      "title": "Expense",
+      "description": "An operational expense (rent, domain, infrastructure, software, utility, marketing, hardware, travel, other)",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "category": { "type": "string", "enum": ["rent", "domain", "infrastructure", "software", "utility", "marketing", "hardware", "travel", "other"] },
+        "title": { "type": "string" },
+        "amount": { "type": "number" },
+        "date": { "type": "string" },
+        "vendor": { "type": "string" },
+        "notes": { "type": "string" },
+        "receiptRef": { "type": "string" }
+      },
+      "required": ["id", "category", "title", "amount", "date", "vendor", "notes"]
+    }
+  },
+  "firestore": {
+    "employees": {
+      "schema": "Employee",
+      "description": "Store employees/personnel records"
+    },
+    "clients": {
+      "schema": "Client",
+      "description": "Store clients and leads CRM records"
+    },
+    "payments": {
+      "schema": "Payment",
+      "description": "Store recorded cash collections from clients"
+    },
+    "salaryPayouts": {
+      "schema": "SalaryPayout",
+      "description": "Store recorded salary payouts to employees"
+    },
+    "expenses": {
+      "schema": "Expense",
+      "description": "Store recorded operational expenses"
+    }
+  }
+}

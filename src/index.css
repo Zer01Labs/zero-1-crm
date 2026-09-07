@@ -1,0 +1,161 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap');
+@import "tailwindcss";
+
+/* ------------------------------------------------------------------ */
+/* ScarletCRM design tokens                                            */
+/* A financial-operations ledger, not a generic dark-mode SaaS panel.  */
+/* Light = paper ledger. Dark = closed books, desk-lamp glow.          */
+/* ------------------------------------------------------------------ */
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Space Grotesk", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+
+  /* surfaces */
+  --color-canvas: var(--scarlet-canvas);
+  --color-surface: var(--scarlet-surface);
+  --color-surface-2: var(--scarlet-surface-2);
+  --color-surface-hover: var(--scarlet-surface-hover);
+  --color-border: var(--scarlet-border);
+  --color-border-soft: var(--scarlet-border-soft);
+
+  /* text */
+  --color-ink: var(--scarlet-ink);
+  --color-ink-soft: var(--scarlet-ink-soft);
+  --color-ink-faint: var(--scarlet-ink-faint);
+
+  /* brand + status */
+  --color-brand: var(--scarlet-brand);
+  --color-brand-soft: var(--scarlet-brand-soft);
+  --color-violet: var(--scarlet-violet);
+  --color-violet-soft: var(--scarlet-violet-soft);
+  --color-gain: var(--scarlet-gain);
+  --color-gain-soft: var(--scarlet-gain-soft);
+  --color-warn: var(--scarlet-warn);
+  --color-warn-soft: var(--scarlet-warn-soft);
+  --color-loss: var(--scarlet-loss);
+  --color-loss-soft: var(--scarlet-loss-soft);
+
+  --shadow-card: var(--scarlet-shadow-card);
+  --shadow-pop: var(--scarlet-shadow-pop);
+}
+
+/* ---------------- LIGHT (default) ---------------- */
+:root {
+  --scarlet-canvas: #eef0f8;
+  --scarlet-surface: #ffffff;
+  --scarlet-surface-2: #f6f7fc;
+  --scarlet-surface-hover: #eceef7;
+  --scarlet-border: #e2e4f1;
+  --scarlet-border-soft: #ececf4;
+
+  --scarlet-ink: #171933;
+  --scarlet-ink-soft: #62658a;
+  --scarlet-ink-faint: #9497b8;
+
+  --scarlet-brand: #4a3aff;
+  --scarlet-brand-soft: #ece9ff;
+  --scarlet-violet: #c026d3;
+  --scarlet-violet-soft: #fae8ff;
+  --scarlet-gain: #10b17a;
+  --scarlet-gain-soft: #e1f8ef;
+  --scarlet-warn: #e59a1c;
+  --scarlet-warn-soft: #fdf1dc;
+  --scarlet-loss: #e5484d;
+  --scarlet-loss-soft: #fde8e8;
+
+  --scarlet-shadow-card: 0 1px 2px rgba(23, 25, 51, 0.04), 0 8px 24px -12px rgba(23, 25, 51, 0.10);
+  --scarlet-shadow-pop: 0 12px 32px -8px rgba(23, 25, 51, 0.18);
+
+  color-scheme: light;
+}
+
+/* ---------------- DARK ---------------- */
+.dark {
+  --scarlet-canvas: #0a0b14;
+  --scarlet-surface: #12131f;
+  --scarlet-surface-2: #171827;
+  --scarlet-surface-hover: #1d1f30;
+  --scarlet-border: #262838;
+  --scarlet-border-soft: #1e2030;
+
+  --scarlet-ink: #f1f1f8;
+  --scarlet-ink-soft: #9a9cbb;
+  --scarlet-ink-faint: #64657f;
+
+  --scarlet-brand: #8b7dff;
+  --scarlet-brand-soft: #211f42;
+  --scarlet-violet: #e879f9;
+  --scarlet-violet-soft: #2a1a35;
+  --scarlet-gain: #34d399;
+  --scarlet-gain-soft: #103527;
+  --scarlet-warn: #fbbf24;
+  --scarlet-warn-soft: #3a2c0d;
+  --scarlet-loss: #f87171;
+  --scarlet-loss-soft: #3a1616;
+
+  --scarlet-shadow-card: 0 1px 0 rgba(255, 255, 255, 0.02) inset, 0 12px 28px -14px rgba(0, 0, 0, 0.6);
+  --scarlet-shadow-pop: 0 20px 48px -12px rgba(0, 0, 0, 0.7);
+
+  color-scheme: dark;
+}
+
+/* ------------------------------------------------------------------ */
+
+* {
+  border-color: var(--color-border);
+}
+
+html {
+  color-scheme: light;
+}
+
+html.dark {
+  color-scheme: dark;
+}
+
+body {
+  background-color: var(--color-canvas);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-ink-faint);
+}
+
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Focus ring — visible, on brand, never suppressed */
+:focus-visible {
+  outline: 2px solid var(--color-brand);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}
